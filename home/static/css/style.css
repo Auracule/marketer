@@ -1,0 +1,259 @@
+:root{
+    --body: white;
+    --nav-color: navy;
+    --latest: black;
+    --white-color: white;
+    --blur-blue: #05668D;
+    --black-color: black;
+    --gold-color: gold;
+    --red-color: red;
+    --crimson-color: crimson;
+    --footer: black;
+    --footer-txt: white;
+    --caddress: black;
+}
+
+.dark{
+    --body: black;
+    --nav-color: navy;
+    --latest: white;
+    --white-color: white;
+    --blur-blue: #05668D;
+    --black-color: white;
+    --gold-color: gold;
+    --red-color: red;
+    --crimson-color: crimson;
+    --footer: black;
+    --footer-txt: white;
+    --caddress: white;
+}
+ 
+body{
+    background: var(--body);
+}
+
+.navbar{
+    background-color: var(--nav-color);
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: .6; */
+}
+
+.navbar .navbar-brand{
+    color: var(--white-color);
+    text-transform: capitalize;
+    font-weight: 800;
+}
+.caddress{
+    color: var(--caddress);
+}
+#navbarSupportedContent a{
+    color: var(--white-color);
+}
+
+.dropdown-menu{
+    background: var(--nav-color);
+    opacity: .7; 
+}
+.dropdown-item{
+    color: var(--white-color);
+}
+.dropdown-item:hover{
+    background: var(--gold-color);
+}
+
+.carousel-indicators button{
+    border-radius: 50%;
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.carousel{
+    position: relative;
+    clip-path: polygon(0 1%, 100% 0%, 100% 93%, 0% 100%);
+}
+
+.like{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--black-color);
+    opacity: .5;
+}
+
+.buton-fre{
+    color: var(--nav-color);
+    background: var(--white-color);
+}
+.buton-fre:hover{
+    color: var(--white-color);
+    background: var(--nav-color);
+    border: 1px solid var(--white-color);
+}
+.card .imgg{
+    height: 30vh;
+}
+.ccform{
+    margin: 3rem;
+}
+.cform{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+.cform form{
+    width: 100%;
+    padding: 1.5rem;
+    background: var(--blur-blue);
+}
+.cform form input[type="text"],
+.cform form input[type="email"]{
+    width: 100%;
+    box-shadow: none;
+    color: var(--nav-color);
+    outline: none;
+}
+.cform form textarea{
+    width: 100%;
+    height: min(6.5rem);
+    box-shadow: none;
+    outline: none;
+}
+.form2 form label{
+    color: var(--white-color);
+}
+.bale{
+    color: var(--blur-blue);
+    background: var(--white-color);
+}
+.bale:hover{
+    color: var(--white-color);
+    background: var(--blur-blue);
+    border:1px solid var(--white-color);
+}
+.about{
+    background: url(../img/carousel2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: fixed;
+    height: 50vh;
+}
+.about-txt{
+    color: var(--black-color);
+    position: absolute;
+    left: 70%;
+    margin-top: 3rem;
+    padding: .6rem;
+    background-color: var(--white-color);
+    opacity: .6;
+    border-top-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.fab{
+    font-size: 1.7rem;
+    transition: ease 2s;
+}
+.dad{
+    color: var(--red-color);
+    font-size: 3rem;
+    background: var(--black-color);
+    padding: .7rem;
+    /* opacity: 0; */
+    transition: ease 2s;
+}
+.show-hide{
+    position: relative;
+}
+.show{
+    position: absolute;
+    top: 10px;
+    right: 12px;
+}
+.show .fa-eye{
+    display: none;
+}
+
+.show .fa-eye-slash{
+    display: block;
+}
+
+.show .shower .fa-eye-slash{
+    display: none;
+}
+
+
+.face{
+    font-size: 2rem;
+    color: var(--white-color);
+}
+
+/* .game{
+    margin-bottom: 10rem;
+} */
+.fate{
+    border: none;
+    /* background: transparent;
+    color: white; */
+}
+.latest{
+    color: var(--latest);
+}
+.latest::after{
+    content: '';
+    display: block;
+    height: 1.3rem;
+    width: 4rem;
+    border-radius: 100%;
+    background: var(--crimson-color);
+    margin: auto;
+    transform: translateX(3px);
+}
+.latest::before{
+    content: '';
+    display: block;
+    height: .5rem;
+    width: 9rem;
+    border-radius: 100%;
+    background: var(--crimson-color);
+    margin: auto;
+    transform: translateY(50px);
+}
+
+/* .fas:hover{
+    opacity: .5;
+    transition: ease 2s;
+} */
+.fab:hover{
+    color: var(--red-color);
+    transform: translateY(-20px);
+    transition: ease 2s;
+}
+.footer{
+    color: var(--footer-txt);
+    background: var(--footer);
+}
+.footer a{
+    color: var(--white-color);
+    text-transform: capitalize;
+    text-decoration: none;
+}
+
+@media(max-width: 1399.98px){
+
+}
+@media(max-width: 1199.98px){
+
+}
+@media(max-width: 991.98px){
+
+}
+@media(max-width: 767.98px){
+
+}
+@media(max-width: 575.68px){
+
+}

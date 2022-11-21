@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block header %}  {% include 'header.html' %}    {% endblock header %}   
+
+{% block carousel %}    {% include 'carousel.html' %}    {% endblock carousel %}
+
+{% block content %} 
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">Shopcart</h2>
+    <div class="table-responsive table-box">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">delete</th>
+            <th scope="col">image</th>
+            <th scope="col">update</th>
+            <th scope="col">amount</th>
+            <th scope="col">quantity</th>
+            <th scope="col">item</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if trolley %}    
+                {% for items in trolley %}     
+                    <tr>
+                        <th scope="row">
+                            <form action="{% url 'delete_item' %}" method="POST">
+                            {% csrf_token %}
+                                <input type="hidden" name="item_id" value="{{items.id}}">
+                                <button type="submit" onclick="return confirm('Are you sure You want to delete this product from your cart?..')" class="btn"><i class="fas fa-trash-alt"></i></button>
+                            </form>      
+                        </th>
+                        <td><img src="{{items.product.imgr.url}}" width="80px" height="80px" alt=""></td>
+                        <td>
+                          <form action="{% url 'increase' %}" method="POST">
+                          {% csrf_token %}
+                            <input type="hidden" name="item_id" value="{{items.id}}">
+                            <input type="number" name="quant" max="{{items.max_quantity}}" min="{{items.min_quantity}}" value="1">
+                            <button type="submit" onclick="return confirm('Are you sure You want to Modify this product in your cart?..')" class="btn"><i class="far fa-check-circle"></i></button>
+                          </form></td>
+                        <td>${{items.amount}}</td>
+                        <td>{{items.quantity}}</td>
+                        <td>{{items.product.title_r}}</td>
+                    </tr>
+                {% endfor %}      
+            {% endif %}          
+        </tbody>
+      </table>
+
+      <div class="table">
+        <table class="table">
+          <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Subtotal: {{subtotal|floatformat:2|intcomma}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>vat(7.5%): {{vat|floatformat:2}} </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total: {{total|floatformat:2}} </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="{% url 'checkout' %}" class="btn btn-info">Checkout</a></td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block footer %}   {% include 'footer.html' %}   {% endblock footer %}

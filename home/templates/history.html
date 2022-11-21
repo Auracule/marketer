@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block header %}  {% include 'header.html' %}    {% endblock header %}   
+
+{% block carousel %}    {% include 'carousel.html' %}    {% endblock carousel %}
+
+{% block content %} 
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">Shopcart</h2>
+    <div class="table-responsive table-box">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">delete</th>
+            <th scope="col">amount</th>
+            <th scope="col">quantity</th>
+            <th scope="col">item</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% if bought %}    
+                {% for items in bought %}     
+                    <tr>
+                        <th scope="row">
+                            <form action="{% url 'del_history' %}" method="POST">
+                            {% csrf_token %}
+                                <input type="hidden" name="history" value="{{items.id}}">
+                                <button type="submit" onclick="return confirm('Are you sure You want to delete this history from your cart?..')" class="btn"><i class="fas fa-trash-alt"></i></button>
+                            </form>      
+                        </th>
+                        <td>${{items.amount}}</td>
+                        <td>{{items.quantity}}</td>
+                        <td>{{items.title_g}}</td>
+                    </tr>
+                {% endfor %}      
+            {% endif %}          
+        </tbody>
+      </table>
+
+      <div class="table">
+        <table class="table">
+          <tbody>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>Total: {{total|floatformat:2}} </td>
+          </tr>
+        </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block footer %}   {% include 'footer.html' %}   {% endblock footer %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}  {% include 'header.html' %}    {% endblock header %}   
+
+{% block carousel %}    {% include 'carousel.html' %}    {% endblock carousel %}
+
+{% block content %}   
+
+
+{% if items %}
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">Products category</h2>
+    <div class="row gy-3 justify-content-center">
+      {% if searched_items %}  
+          {% for items in searched_items %}
+            <div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
+              <div class="card">
+                <img src="{{items.imgr.url}}" class="card-img-top imgg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{items.name|title}}</h5>
+                  <p class="card-text">${{items.price}}</p>
+                  <p class="card-text">{{items.description}}</p>
+                  <a href="{% url 'single_prod' items.id %}" class="btn btn-primary">See Products</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}    
+      {% endif %}
+    </div>
+  </div>
+
+    
+{% else %}
+  <h3 class="mt-5 mb-5 text-center text-info">You searched for {{items}} is not found</h3>
+{% endif %}
+  
+
+{% endblock content %}
+
+{% block footer %}   {% include 'footer.html' %}   {% endblock footer %}

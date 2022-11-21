@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}  {% include 'header.html' %}    {% endblock header %}   
+
+{% block carousel %}    {% include 'carousel.html' %}    {% endblock carousel %}
+
+{% block content %}   
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">Latest Products</h2>
+    <div class="row gy-3 justify-content-center">
+      {% if categories %}  
+          {% for items in categories %}
+            <div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
+              <div class="card">
+                <img src="{{items.img.url}}" class="card-img-top imgg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{items.name|title}}</h5>
+                  <p class="card-text">{{items.description}}</p>
+                  <a href="{% url 'category' items.id items.slug %}" class="btn btn-primary">See Products</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}    
+      {% endif %}
+    </div>
+  </div>
+
+
+{% endblock content %}
+
+
+{% block contact %}  {% include 'contact.html' %}   {% endblock contact %}
+
+{% block about %}   {% include 'about.html' %}    {% endblock about %}
+
+{% block footer %}   {% include 'footer.html' %}   {% endblock footer %}
+

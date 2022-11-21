@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}  {% include 'header.html' %}    {% endblock header %}   
+
+{% block carousel %}    {% include 'carousel.html' %}    {% endblock carousel %}
+
+{% block content %} 
+
+
+<div class="container mt-5 mb-5">
+  <!-- <h2 class="name text-center text-capitalize">Callback</h2> -->
+  <div class="row">
+      <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3"></div>
+      <div class="col-10 col-sm-10 col-md-6 col-lg-6 col-xl-6">
+        <h2 class="names">Dear {{profile.first_name}},</h2>
+        <h5>Your purchase of new and quality leather bags from our brand was successful. 
+          we look forward to doing more business with you. </h5>
+          <p>Thank you for your patronage....</p>
+      </div>
+      <div class="col-10 col-sm-10 col-md-3 col-lg-3 col-xl-3"></div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+{% block footer %}   {% include 'footer.html' %}   {% endblock footer %}

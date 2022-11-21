@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}  {% include 'header.html' %}    {% endblock header %}   
+
+{% block carousel %}    {% include 'carousel.html' %}    {% endblock carousel %}
+
+{% block content %} 
+
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">{{single.name}} category</h2>
+    <div class="row gy-3 justify-content-center">
+            <div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
+              <div class="card">
+                <img src="{{prods.imgr.url}}" class="card-img-top imgg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{prods.name|title}}</h5>
+                  <p class="card-text">${{prods.price}}</p>
+                  <p class="card-text">{{prods.description}}</p>
+                  <form action="{% url 'cart' %}" method="POST">
+                  {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{prods.id}}">
+                    <input type="number" name="quantity" value="1" min="{{prods.min_quantity}}" max="{{prods.max_quantity}}" class="form-control shadow-none my-4 border-warning" style="width: 60px">
+                    <button type="submit" class="btn btn-info text-white w-25">Cart</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+    </div>
+  </div>
+
+{% endblock content %}
+
+{% block footer %}   {% include 'footer.html' %}   {% endblock footer %}

@@ -1,0 +1,39 @@
+
+        {% load static %}
+        
+        <div class="container mt-5 mb-5">
+            <h2 class="text-capitalize text-center latest">Contact us</h2>
+            <div class="row justify-content-center">
+                <div class="col-10 col-sm-10 col-md-5 p-5">
+                    <div class="caddress">
+                      <p>Address: <span>2b Yinusa street</span></p>
+                      <p>Ikeja, Lagos State.</p>
+                      <p>Phone: +1 (234) 456 789</p>
+                      <p>Email: teamcyberdev@gmail.com</p>
+                      <p>Website: www.teamcyberdev.com</p>
+                    </div>
+                </div>
+  
+                <div class="col-10 col-sm-10 col-md-6 pb-5">
+                  <div class="ccform">
+                    <div class="cform">
+                      <form action = "{% url 'contact' %}" method = "POST">
+                      {% csrf_token %}
+                        <div class="mb-3">
+                          <input type="text" name='full_name' placeholder="Full name" class="form-control" id="exampleInputText1" aria-describedby="emailHelp"> 
+                        </div>
+  
+                        <div class="mb-3">
+                          <input type="email" name = 'email' placeholder="Email Address" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"> 
+                        </div>
+  
+                        <div class="mb-3">
+                          <textarea name='message' placeholder="Enter Your Message" id="" cols="30" rows="10"></textarea>
+                        </div>
+                        <button type="submit" class="btn bale">Submit</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>

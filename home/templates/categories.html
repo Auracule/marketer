@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block header %}  {% include 'header.html' %}    {% endblock header %}   
+
+{% block carousel %}    {% include 'carousel.html' %}    {% endblock carousel %}
+
+{% block content %} 
+
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">Products category</h2>
+    <div class="row gy-3 justify-content-center">
+      {% if categories %}  
+          {% for items in categories %}
+            <div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
+              <div class="card">
+                <img src="{{items.img.url}}" class="card-img-top imgg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{items.name|title}}</h5>
+                  <p class="card-text">{{items.description}}</p>
+                  <a href="{% url 'category' items.id items.slug %}" class="btn btn-primary">See Products</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}    
+      {% endif %}
+    </div>
+  </div>
+{% comment %} 
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">Products category</h2>
+    <div class="row gy-3 justify-content-center">
+      {% if cloth %}  
+          {% for items in cloth %}
+            <div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
+              <div class="card">
+                <img src="{{items.img.url}}" class="card-img-top imgg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{items.name|title}}</h5>
+                  <p class="card-text">${{items.price}}</p>
+                  <p class="card-text">{{items.description}}</p>
+                  <a href="" class="btn btn-primary">See Products</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}    
+      {% endif %}
+    </div>
+  </div>
+
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">Products category</h2>
+    <div class="row gy-3 justify-content-center">
+      {% if perfume %}  
+          {% for items in perfume %}
+            <div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
+              <div class="card">
+                <img src="{{items.img.url}}" class="card-img-top imgg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{items.name|title}}</h5>
+                  <p class="card-text">${{items.price}}</p>
+                  <p class="card-text">{{items.description}}</p>
+                  <a href="" class="btn btn-primary">See Products</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}    
+      {% endif %}
+    </div>
+  </div>
+  
+<div class="container mt-5 mb-5">
+    <h2 class="text-center text-capitalize latest">Products category</h2>
+    <div class="row gy-3 justify-content-center">
+      {% if bag %}  
+          {% for items in bag %}
+            <div class="col-10 col-sm-10 col-md-6 col-lg-3 col-xl-3">
+              <div class="card">
+                <img src="{{items.img.url}}" class="card-img-top imgg" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{items.name|title}}</h5>
+                  <p class="card-text">${{items.price}}</p>
+                  <p class="card-text">{{items.description}}</p>
+                  <a href="" class="btn btn-primary">See Products</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}    
+      {% endif %}
+    </div>
+  </div> {% endcomment %}
+
+{% endblock content %}
+
+{% block footer %}   {% include 'footer.html' %}   {% endblock footer %}

@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load humanize %}
+
+{% block header %}  {% include 'header.html' %}    {% endblock header %}   
+
+{% block carousel %}    {% include 'carousel.html' %}    {% endblock carousel %}
+
+{% block content %} 
+
+
+
+
+
+<div class="container mt-5 mb-5">
+  <h2 class="text-center text-capitalize latest">Checkout</h2>
+  <div class="row justify-content-center">
+    <div class="col-10 col-sm-10 col-md-6">
+      <h2 class="name">Order Summary</h2>
+      <div class="table-responsive table-box">
+        <table class="table">
+          <thead>
+            <th scope="col">Product</th>
+            <th scope="col">image</th>
+            <th scope="col">amount</th>
+            <th scope="col">quantity</th>
+          </tr>
+          </thead>
+
+          <tbody>
+            {% if trolley %}    
+              {% for items in trolley %}     
+                  <tr>
+                    <td>{{items.title_g}}</td>
+                    <td><img src="{{items.product.imgr.url}}" width="80px" height="80px" alt=""></td>
+                    <td>{{items.quantity}}</td>
+                    <td>${{items.amount}}</td>
+                  </tr>
+              {% endfor %}      
+            {% endif %}     
+
+          </tbody>
+        </table>
+
+        <div class="table">
+          <table class="table">
+            <tbody>                 
+            <tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Total: {{total|floatformat:2}} </td>
+              </tr>  
+          </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-10 col-sm-10 col-md-6">
+      <h2 class="name">Delivery Address</h2>
+      <div class="cform">
+        <div class="ccform">
+            <form action="{% url 'pay' %}" method ="POST">
+            {% csrf_token %}
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">First Name</label>
+                  <input type="text" name="first_name" value="{{profile.first_name}}"   class="form-control" placeholder="First Name" id="exampleInputText1" aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Last Name</label>
+                  <input type="text" name="last_name" value="{{profile.last_name}}"   class="form-control" placeholder="Last Name" id="exampleInputText1" aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Email address</label>
+                  <input type="email" name="email" value="{{profile.email}}"  class="form-control" placeholder="Email Address" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Phone Number</label>
+                  <input type="text" name="phone" value="{{profile.phone}}"   class="form-control" placeholder="Phone Number" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Home Address</label>
+                  <input type="text" name="address" value="{{profile.address}}"  class="form-control" placeholder="Home Address" id="exampleInputText1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">State</label>
+                  <input type="text" name="state" value="{{profile.state}}" class="form-control" placeholder="State" id="exampleInputText1" aria-describedby="emailHelp">
+                  <input type="hidden" name="total" value={{total}} class="form-control" id="exampleInputText1" aria-describedby="emailHelp">
+                </div>
+                <button type="submit" class="btn btn-primary">Pay</button>
+
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+{% block footer %}   {% include 'footer.html' %}   {% endblock footer %}

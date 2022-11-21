@@ -1,0 +1,88 @@
+
+
+  <div class="container-fluid sticky-top">
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'index' %}">Cyber Dev. Store</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa-solid fa-bars"></i>
+            
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href=""></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'product' %}">Product</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="{% url 'categories' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Categories
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">    
+                  {% if categories %}
+                    {% for items in categories %}
+                      <li><a class="dropdown-item" href="{% url 'category' items.id items.slug %}">{{items.title}}</a></li>
+                    {% endfor %}
+                  {% endif %} 
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-user"></i>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+                    {% if user.is_authenticated %}
+                          <li><a class="dropdown-item" href="{% url 'signout' %}">Signout</a></li>
+                          <li><a class="dropdown-item" href="{% url 'profile' %}">{{user.username}}</a></li>
+                          <li><a class="dropdown-item" href="{% url 'shopcart' %}"><i class="fas fa-shopping-cart"></i>
+                            {% if cartcount > 0 %}
+                              <span class="badge rounded-pill bg-warning text-dark">{{cartcount}}</span>
+                            {% else %}
+                            <span class="badge rounded-pill bg-warning text-dark">0</span>
+                            {% endif %}
+                          </a></li>  
+                      {% else %}
+                          <li><a class="dropdown-item" href="{% url 'signin' %}">Signin</a></li>
+                          <li><a class="dropdown-item" href="{% url 'signup' %}">Signup</a></li>  
+                    {% endif %}
+                      
+                </ul>
+              </li>
+
+            </ul>
+            <form class="d-flex" action="{% url 'search' %}" method="POST">
+            {% csrf_token %}
+              <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn buton-fre" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+        <div class="face toggle">
+          <i class="fas fa-moon"></i>
+          <!-- <i class="fas fa-sun"></i> -->
+        </div>
+      </nav>    
+      {% if messages %}     
+          {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              <strong>{{message}}</strong>
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}      
+      {% endif %}        
+    </div>
+
+
+
+
+
+
+
+
+
+   
